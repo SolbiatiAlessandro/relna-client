@@ -49,3 +49,26 @@ def fork_request(
             destination_dir=destination_dir)
     os.remove("trainer.zip")
     logging.warning("relna:client:fork trainer {}, fork successful".format(trainerID))
+
+def ship_request(
+        zipped_code_path,
+        trainer_pkg_path,
+        local=True
+        ):
+    """
+    already prepared payload
+    send ship request ro relna server
+    """
+    logging.warning("relna:client:ship shipping trainer {}".format(
+        trainer_pkg_path))
+    if local: url = "http://127.0.0.1:5000/ship"
+    else: url = "https://relna-241818.appspot.com/ship"
+    with open('zipped_code_path','rb') as zf:
+        zipped_code_binary = bytes(zf.read())
+    with open('trainer_pkg_path','rb') as pf:
+        trainer_pkg_binary = bytes(pf.read())
+    utils.post_request(url, {
+        'zipped_code_binary': zipped_code_binary,
+        'trainer_pkg_binary' : trainer_pkg_binary
+        })
+    logging.warning("relna:client:ship ship request sent succesfully")
