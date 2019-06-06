@@ -1,6 +1,9 @@
 import zipfile
 import logging
 import os
+import urllib.parse
+import urllib.request
+
 def zip_trainer(
         trainer_folder_name,
         zip_name="trainer.zip",
@@ -29,7 +32,11 @@ def zip_trainer(
 
 def unzip_trainer(
         zipped_trainer_filename="trainer.zip", 
-        destination_dir="./unzipped_trainer"):
+        destination_dir="."):
+    destination_dir = os.path.join(
+            destination_dir,
+            "relna_trainer"
+            )
     logging.warning("relna:utils:unzip_trainer: unzip trainer from {} to {}".format(
                 zipped_trainer_filename, destination_dir))
     zip_ref = zipfile.ZipFile(zipped_trainer_filename, 'r')
@@ -57,3 +64,18 @@ def build_package(
     os.system("rm ./setup.py")
     os.system("rm -r ./trainer")
     os.system("rm -r ./trainer.egg-info")
+
+def post_request(
+        url = 'https://relna-241818.appspot.com/',
+        values = {}
+        ):
+    """
+    POST request to relna server
+    """
+    data = urllib.parse.urlencode(values).encode("utf-8")
+    logging.warning("relna-client:bin:utils:post_request posting request to server {}".format(data))
+    req = urllib.request.Request(url, data)
+    response = urllib.request.urlopen(req)
+    logging.warning("relna-client:bin:utils:post_request request successful")
+    return response.read()
+
