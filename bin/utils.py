@@ -1,8 +1,7 @@
 import zipfile
 import logging
 import os
-import urllib.parse
-import urllib.request
+import requests
 
 def zip_trainer(
         trainer_folder_name,
@@ -73,10 +72,8 @@ def post_request(
     POST request to relna server
     """
     logging.warning("relna-client:bin:utils:post_request opening connectino with {}".format(url))
-    data = urllib.parse.urlencode(values).encode("utf-8")
-    logging.warning("relna-client:bin:utils:post_request posting request to server {}".format(len(data)))
-    req = urllib.request.Request(url, data)
-    response = urllib.request.urlopen(req)
+    logging.warning("relna-client:bin:utils:post_request posting request to server {}".format(values.keys()))
+    response = requests.post(url, values)
     logging.warning("relna-client:bin:utils:post_request request successful")
-    return response.read()
+    return response
 
