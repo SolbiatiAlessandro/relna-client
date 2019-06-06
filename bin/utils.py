@@ -74,7 +74,7 @@ def post_request(
     """
     logging.warning("relna-client:bin:utils:post_request opening connectino with {}".format(url))
     data = urllib.parse.urlencode(values).encode("utf-8")
-    logging.warning("relna-client:bin:utils:post_request posting request to server {}".format(data))
+    logging.warning("relna-client:bin:utils:post_request posting request to server {}".format(len(data)))
     req = urllib.request.Request(url, data)
     response = urllib.request.urlopen(req)
     logging.warning("relna-client:bin:utils:post_request request successful")

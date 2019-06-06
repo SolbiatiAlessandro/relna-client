@@ -6,3 +6,5 @@ payload
 bin/.mypy_cache
 .mypy_cache
 *.mypy_cache
+*.json
+*.swp
