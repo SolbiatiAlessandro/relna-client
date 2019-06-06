@@ -1,5 +1,7 @@
 import click
 import bin.client
+import logging
+import os
 
 DELIMITER = "="*30
 def dprint(content):
@@ -13,15 +15,15 @@ def main(command):
     if command == "fork":
         print("Enter the TrainerID you want to fork: ")
         trainerID = input()
-        log.warning("relna-client:relna:fork starting fork for trainer {}".format(trainerID))
+        logging.warning("relna-client:relna:fork starting fork for trainer {}".format(trainerID))
         bin.client.fork_request(
                 trainerID=trainerID,
                 local=False,
                 )
-        log.warning("relna-client:relna:fork fork for trainer {} completed".format(trainerID))
+        logging.warning("relna-client:relna:fork fork for trainer {} completed".format(trainerID))
     if command == "ship":
         trainer_folder = "./relna_trainer"
-        log.warning("relna-client:relna:ship reading trainer from {}".trainer_folder)
+        logging.warning("relna-client:relna:ship reading trainer from {}".format(trainer_folder))
         PAYLOAD_FOLDER = "./payload"
         bin.client.prepare_payload(
                 trainer_folder,
@@ -30,7 +32,7 @@ def main(command):
                 zipped_code_path=os.path.join(PAYLOAD_FOLDER, "trainer.zip"),
                 trainer_pkg_path=os.path.join(PAYLOAD_FOLDER, "trainer-0.1.tar.gz")
                 )
-        log.warning("relna-client:relna:ship ship request completed")
+        logging.warning("relna-client:relna:ship ship request completed")
 
 
 if __name__ == "__main__":

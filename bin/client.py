@@ -53,7 +53,10 @@ def fork_request(
 def ship_request(
         zipped_code_path,
         trainer_pkg_path,
-        local=True
+        local=True,
+        python_model='template_model',
+        gym='RoboschoolHumanoid',
+        expert_policy='v1',
         ):
     """
     already prepared payload
@@ -63,12 +66,15 @@ def ship_request(
         trainer_pkg_path))
     if local: url = "http://127.0.0.1:5000/ship"
     else: url = "https://relna-241818.appspot.com/ship"
-    with open('zipped_code_path','rb') as zf:
+    with open(zipped_code_path,'rb') as zf:
         zipped_code_binary = bytes(zf.read())
-    with open('trainer_pkg_path','rb') as pf:
+    with open(trainer_pkg_path,'rb') as pf:
         trainer_pkg_binary = bytes(pf.read())
     utils.post_request(url, {
         'zipped_code_binary': zipped_code_binary,
-        'trainer_pkg_binary' : trainer_pkg_binary
+        'trainer_pkg_binary' : trainer_pkg_binary,
+        'python_model' : python_model,
+        'gym' : gym,
+        'expert_policy' : expert_policy
         })
     logging.warning("relna:client:ship ship request sent succesfully")
