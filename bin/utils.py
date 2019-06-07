@@ -10,7 +10,8 @@ def zip_trainer(
             'README.md',
             'setup.py',
             'trainer/model.py',
-            'trainer/task.py'
+            'trainer/task.py',
+            'trainer/__init__.py'
             ]
         ):
     """

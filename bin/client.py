@@ -6,6 +6,7 @@ except:
     import utils
 import os
 import logging
+import requests
 
 def prepare_payload(
         trainer_folder_name,
@@ -70,11 +71,16 @@ def ship_request(
         zipped_code_binary = bytes(zf.read())
     with open(trainer_pkg_path,'rb') as pf:
         trainer_pkg_binary = bytes(pf.read())
-    utils.post_request(url, {
+    requests.post(url, data={
         'zipped_code_binary': zipped_code_binary,
         'trainer_pkg_binary' : trainer_pkg_binary,
         'python_model' : python_model,
         'gym' : gym,
         'expert_policy' : expert_policy
-        })
+        }, files={
+            'trainer':open(trainer_pkg_path,"rb"),
+            'code':open(zipped_code_path,"rb")
+            }
+        
+        )
     logging.warning("relna:client:ship ship request sent succesfully")
