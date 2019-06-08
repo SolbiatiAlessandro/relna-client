@@ -18,7 +18,7 @@ def main(command):
         logging.warning("relna-client:relna:fork starting fork for trainer {}".format(trainerID))
         bin.client.fork_request(
                 trainerID=trainerID,
-                local=False,
+                local=True,
                 )
         logging.warning("relna-client:relna:fork fork for trainer {} completed".format(trainerID))
     if command == "ship":
@@ -30,7 +30,8 @@ def main(command):
                 payload_folder_name=PAYLOAD_FOLDER)
         bin.client.ship_request(
                 zipped_code_path=os.path.join(PAYLOAD_FOLDER, "trainer.zip"),
-                trainer_pkg_path=os.path.join(PAYLOAD_FOLDER, "trainer-0.1.tar.gz")
+                trainer_pkg_path=os.path.join(PAYLOAD_FOLDER, "trainer-0.1.tar.gz"),
+                local=True
                 )
         logging.warning("relna-client:relna:ship ship request completed")
 

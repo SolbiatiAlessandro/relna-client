@@ -40,7 +40,8 @@ def fork_request(
     TRAINER_ZIP = "trainer.zip"
     if local: url = "http://127.0.0.1:5000/fork"
     else: url = "https://relna-241818.appspot.com/fork"
-    zipped_code_bytes = utils.post_request(url, {'trainerID':trainerID})
+    response = utils.post_request(url, {'trainerID':trainerID})
+    zipped_code_bytes = response.content
     with open(TRAINER_ZIP, "wb") as f:
         f.write(zipped_code_bytes)
     try: os.mkdir(destination_dir)
