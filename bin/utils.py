@@ -11,7 +11,8 @@ def zip_trainer(
             'setup.py',
             'trainer/model.py',
             'trainer/task.py',
-            'trainer/__init__.py'
+            'trainer/__init__.py',
+            'trainer/GCSproxy.py'
             ]
         ):
     """
