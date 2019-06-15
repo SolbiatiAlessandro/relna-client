@@ -1,5 +1,8 @@
 # Imitation Learning Trainer basis
 
+Here are the docs for the trainer, this are developer docs and not intended for the average relna user.
+You can skip this if you just want to submit your trainer, you should read this if you would to deploy your own trainer.
+
 ## MODES
 
 You can run jobs in different modes:
