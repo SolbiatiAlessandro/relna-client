@@ -11,6 +11,14 @@ import requests
 def prepare_payload(
         trainer_folder_name,
         payload_folder_name="payload"
+        TRAINER_FILES = [
+            'README.md',
+            'setup.py',
+            'trainer/model.py',
+            'trainer/task.py',
+            'trainer/__init__.py',
+            'trainer/GCSproxy.py'
+            ]
         ):
     """
     zip python code and build package
@@ -20,7 +28,8 @@ def prepare_payload(
     except: pass
     utils.zip_trainer(
             trainer_folder_name,
-            zip_name=os.path.join(payload_folder_name, "trainer.zip"))
+            zip_name=os.path.join(payload_folder_name, "trainer.zip"),
+            TRAINER_FILES)
     utils.build_package(
             trainer_folder_name,
             package_name=payload_folder_name)

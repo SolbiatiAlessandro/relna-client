@@ -25,6 +25,11 @@ def main(command):
         trainer_folder = "./relna_trainer"
         logging.warning("relna-client:relna:ship reading trainer from {}".format(trainer_folder))
         PAYLOAD_FOLDER = "./payload"
+        TRAINER_FILES = []
+        TRAINER_FILES += os.listdir(trainer_folder)
+        TRAINER_FILES += os.listdir(os.path.join(trainer_folder, "trainer"))
+        logging.warning("[relna.ship] shipping the following files (in the zip)")
+        for f in TRAINER_FILES: logging.warning(f)
         bin.client.prepare_payload(
                 trainer_folder,
                 payload_folder_name=PAYLOAD_FOLDER)
