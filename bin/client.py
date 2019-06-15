@@ -68,6 +68,7 @@ def ship_request(
         python_model='template_model',
         gym='RoboschoolHumanoid',
         expert_policy='v1',
+        train_steps=1000
         ):
     """
     already prepared payload
@@ -86,7 +87,8 @@ def ship_request(
         'trainer_pkg_binary' : trainer_pkg_binary,
         'python_model' : python_model,
         'gym' : gym,
-        'expert_policy' : expert_policy
+        'expert_policy' : expert_policy,
+        'train_steps' : train_steps
         }, files={
             'trainer':open(trainer_pkg_path,"rb"),
             'code':open(zipped_code_path,"rb")

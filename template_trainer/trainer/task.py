@@ -90,7 +90,11 @@ def train_and_save(args):
                 args.cloud_job_dir,
                 mode=args.mode)
 
-    return train_mse, -1
+    output_1 = train_mse[-1]
+    output_2 = -1
+    logging.warning("trainer:train_and_save:SUCCESFULLY COMPLETED")
+    logging.warning("trainer:train_and_save:returning {}, {}".format(output_1,output_2))
+    return output_1, output_2
 
 if __name__=="__main__":
     job_id = uuid.uuid4() 
@@ -147,9 +151,9 @@ if __name__=="__main__":
 
 
     args, _ = parser.parse_known_args()
-    output_1, output2 = train_and_save(args)
+    output_1, output_2 = train_and_save(args)
     jobid = utils.parse_job_dir(args.cloud_job_dir)
-    utils.submit_job_results(
+    utils.post_model_outputs(
             jobid,
             output_1,
             output_2

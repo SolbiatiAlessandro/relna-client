@@ -28,7 +28,7 @@ def ship_workflow(
             trainer_folder,
             payload_folder_name=payload_folder)
 
-    config = configparser.ConfigParser()
+    config = configparser.ConfigParser(allow_no_value=True)
     config.read(
             os.path.join(trainer_folder, "trainer.config")
             )
@@ -43,7 +43,8 @@ def ship_workflow(
             local=False,
             gym = trainer_metadata['gym'],
             expert_policy = trainer_metadata['expert_policy'],
-            python_model = trainer_metadata['python_model']
+            python_model = trainer_metadata['python_model'],
+            train_steps = trainer_metadata['train_steps']
             )
     logging.warning("relna-client:relna:ship ship request completed")
 

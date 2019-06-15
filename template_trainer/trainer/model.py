@@ -56,7 +56,7 @@ class Model():
             ):
         """
         train and save model
-        returns: train_mse
+        returns: train_mse np.array(float)
         """
         if not os.path.exists(save_folder):
             os.makedirs(save_folder)
