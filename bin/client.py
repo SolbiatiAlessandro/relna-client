@@ -10,7 +10,7 @@ import requests
 
 def prepare_payload(
         trainer_folder_name,
-        payload_folder_name="payload"
+        payload_folder_name="payload",
         TRAINER_FILES = [
             'README.md',
             'setup.py',
@@ -29,7 +29,7 @@ def prepare_payload(
     utils.zip_trainer(
             trainer_folder_name,
             zip_name=os.path.join(payload_folder_name, "trainer.zip"),
-            TRAINER_FILES)
+            TRAINER_FILES=TRAINER_FILES)
     utils.build_package(
             trainer_folder_name,
             package_name=payload_folder_name)

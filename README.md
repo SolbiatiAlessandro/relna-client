@@ -5,7 +5,7 @@ This is the command-line client interface for relna
 ## relna-client APIs
 
 ```
-relna fork <trainer-hash>
+(venv) python relna.py --command fork 
 ```
 - [X] Implemented
 `relna fork` allows you to fork a trainer from relna. It will download and unzip a trainer package from the relna backend.
@@ -25,7 +25,7 @@ relna check
 
 
 ```
-relna ship
+(venv) python relna.py --command ship 
 ```
-- [ ] Implemented
+- [X] Implemented
 `relna ship` ships the trainer to the relna backend 

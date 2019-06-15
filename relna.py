@@ -22,7 +22,8 @@ def ship_workflow(
     trainer_files += os.listdir(trainer_folder)
     trainer_files += os.listdir(os.path.join(trainer_folder, "trainer"))
     logging.warning("[relna.ship] shipping trainer with the following files (in the zip)")
-    for f in trainer_files: logging.warning(f)
+    for file_name in trainer_files: 
+        logging.warning("- {}".format(file_name))
     bin.client.prepare_payload(
             trainer_folder,
             payload_folder_name=payload_folder)
@@ -33,8 +34,8 @@ def ship_workflow(
             )
     trainer_metadata = config['TRAINER_METADATA']
     logging.warning("[relna.ship] shipping trainer with the following config")
-    for k, val in trainer_metadata.items():
-        logging.warning("{} : {}".format(gk, val))
+    for field, value in trainer_metadata.items():
+        logging.warning("- {} : {}".format(field, value))
 
     bin.client.ship_request(
             zipped_code_path=os.path.join(payload_folder, "trainer.zip"),
