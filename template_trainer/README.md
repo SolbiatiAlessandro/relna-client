@@ -1,7 +1,7 @@
 # Imitation Learning Trainer basis
 
-Here are the docs for the trainer, this are developer docs and not intended for the average relna user.
-You can skip this if you just want to submit your trainer, you should read this if you would to deploy your own trainer.
+Here are the docs for how the trainer interact with the relna back end, these are developer docs and not intended for the average relna user.
+You can skip this if you just want to submit your trainer, you should read this if you would to develop your own trainer pipeline.
 
 ## MODES
 
