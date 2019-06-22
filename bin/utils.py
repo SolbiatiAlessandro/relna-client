@@ -2,7 +2,7 @@ import zipfile
 import logging
 import os
 import requests
-from shutil import copyfile, copytree
+from shutil import copyfile, copytree, rmtree
 
 def zip_trainer(
         trainer_folder_name,
@@ -66,9 +66,9 @@ def build_package(
         pkg_destination_folder))
 
     #clean local folder
-    os.system("rm ./setup.py")
-    os.system("rm -r ./trainer")
-    os.system("rm -r ./trainer.egg-info")
+    os.remove("./setup.py")
+    rmtree("./trainer")
+    rmtree("./trainer.egg-info")
 
 def post_request(
         url = 'https://relna-241818.appspot.com/',
