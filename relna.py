@@ -20,13 +20,14 @@ def ship_workflow(
     logging.warning("relna-client:relna:ship reading trainer from {}".format(trainer_folder))
     trainer_files = []
     trainer_files += os.listdir(trainer_folder)
-    trainer_files += os.listdir(os.path.join(trainer_folder, "trainer"))
+    trainer_files += [os.path.join("trainer",filename) for filename in os.listdir(os.path.join(trainer_folder, "trainer"))]
     logging.warning("[relna.ship] shipping trainer with the following files (in the zip)")
     for file_name in trainer_files: 
         logging.warning("- {}".format(file_name))
     bin.client.prepare_payload(
             trainer_folder,
-            payload_folder_name=payload_folder)
+            payload_folder_name=payload_folder,
+            TRAINER_FILES=trainer_files)
 
     config = configparser.ConfigParser(allow_no_value=True)
     config.read(
