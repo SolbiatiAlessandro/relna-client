@@ -2,6 +2,7 @@ import zipfile
 import logging
 import os
 import requests
+from shutil import copyfile, copytree
 
 def zip_trainer(
         trainer_folder_name,
@@ -53,8 +54,11 @@ def build_package(
     pkg_destination_folder = os.path.join(package_name)
     # copying setup.py and trainer to current folder
     # (package will not be built correctly otherwise
-    os.system("cp {} .".format(os.path.join(trainer_folder_name, 'setup.py')))
-    os.system("cp -r {} .".format(os.path.join(trainer_folder_name, 'trainer')))
+
+    copyfile(os.path.join(trainer_folder_name, 'setup.py'), 'setup.py')
+    copytree(os.path.join(trainer_folder_name, 'trainer'), 'trainer')
+    #os.system("cp {} .".format(os.path.join(trainer_folder_name, 'setup.py')))
+    #os.system("cp -r {} .".format(os.path.join(trainer_folder_name, 'trainer')))
     # following commands builds the package
     os.system("python setup.py\
             sdist -d {}".format(pkg_destination_folder))
