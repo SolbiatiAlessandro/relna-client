@@ -8,3 +8,5 @@ bin/.mypy_cache
 *.mypy_cache
 *.json
 *.swp
+*.pkl
+*.csv

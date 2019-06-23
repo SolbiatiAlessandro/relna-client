@@ -12,9 +12,9 @@ This is the command-line client interface for relna
 The trainer package will have a `model.py` that you can work on.
 
 ```
-relna data
+(venv) relna --command data
 ```
-- [ ] Implemented
+- [x] Implemented
 Data are supposed to be in the cloud, but you can request a local copy for experimentation. You will recieve only a small amount of the data to make fast iterations.
 
 ```
