@@ -17,6 +17,8 @@ The trainer package will have a `model.py` that you can work on.
 - [x] Implemented
 Data are supposed to be in the cloud, but you can request a local copy for experimentation. You will recieve only a small amount of the data to make fast iterations.
 
+Data are read by [relna google cloud storage](https://console.cloud.google.com/storage/browser/relna-mlengine?project=relna-241818)
+
 ```
 relna check
 ```
